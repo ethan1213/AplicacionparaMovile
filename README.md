@@ -41,6 +41,19 @@ app/build.gradle.kts                    -> dependencias y config del módulo app
 gradle/libs.versions.toml               -> catálogo de versiones (un solo lugar para todas las versiones de librerías)
 ```
 
+## Ruta de aprendizaje — rumbo a la Prueba 1 (Evaluación Parcial 1)
+
+Según las guías del ramo (DSY1105), la primera evaluación cubre estos 6 temas en orden. Los ejercicios de código de las guías 2 a 5 son Kotlin "puro" (sin Android, se corren en IntelliJ) y viven en la carpeta [`kotlin-basico/`](./kotlin-basico); la guía 6 ya es este mismo proyecto Android.
+
+- [x] **1. Ecosistema móvil** — Nativo vs Multiplataforma, por qué Kotlin
+- [ ] **2. Kotlin básico** — variables, tipos, operadores, null safety (`?.`, `?:`), `when`
+- [ ] **3. Colecciones** — `List`/`Map`, ciclos `for`/`while`, funciones de orden superior (`filter`, `map`)
+- [ ] **4. POO** — clases, `open`/herencia, encapsulamiento (`private`), polimorfismo (`override`)
+- [ ] **5. Corrutinas y sintaxis avanzada** — `suspend`, `delay`, `sealed class`, `data class`, funciones de ámbito (`let`)
+- [ ] **6. Primer app en Android Studio** — Activity, Compose, emulador (ya lo tenemos corriendo)
+
+Vamos marcando cada tema como hecho en la bitácora de abajo a medida que lo repasamos.
+
 ## Problemas conocidos / soluciones
 
 - **`compileSdk` desalineado con las dependencias**: si `./gradlew build` falla con "requires libraries and applications that depend on it to compile against version X or later", hay que subir `compileSdk`/`targetSdk` en `app/build.gradle.kts` a esa versión.
@@ -67,6 +80,28 @@ gradle/libs.versions.toml               -> catálogo de versiones (un solo lugar
 - **`libs.versions.toml`**: catálogo de versiones — en vez de escribir la versión de cada librería en cada `build.gradle.kts`, se define una sola vez ahí y se referencia (`libs.androidx.core.ktx`). Evita tener 3 versiones distintas de la misma librería por error.
 - **`@Composable`**: función que "describe" un pedazo de UI. Jetpack Compose la vuelve a ejecutar (recomponer) cuando cambian los datos que usa, y así actualiza la pantalla — no manipulas Views a mano como en el sistema viejo (XML + `findViewById`).
 - **`git`**: se diferenció `.gitignore` de raíz (ignora `local.properties`, carpetas `.idea` sensibles, logs de crash) del `.gitignore` dentro de `app/` (ignora `app/build`, la carpeta donde Gradle deja los archivos compilados — nunca se sube a git, se regenera siempre).
+
+**Dudas / para repasar antes de la prueba:**
+- _(vamos agregando acá lo que cueste más)_
+
+---
+
+### 2026-08-28 — Tema 1: Ecosistema móvil (Nativo vs Multiplataforma)
+
+**Qué se hizo:**
+- Repaso guiado de los dos enfoques para construir apps móviles, en preparación para la Guía 1.
+
+**Conceptos clave:**
+- **Desarrollo nativo**: se programa por separado para cada sistema operativo, usando el lenguaje y las herramientas "oficiales" de cada uno.
+  - **Android** → Kotlin (moderno, recomendado por Google) o Java (más antiguo). Se programa en Android Studio.
+  - **iOS** → Swift (moderno, estándar actual) o Objective-C (legado). Se programa en Xcode.
+  - Ventajas: máximo rendimiento y acceso total a las funciones del hardware (cámara, sensores, Bluetooth) apenas Apple/Google las lanzan; la UI se siente 100% "como debe verse" en ese sistema.
+  - Desventaja principal: hay que escribir (y mantener) **dos apps distintas** — una en Kotlin, otra en Swift — lo que duplica tiempo y costo de desarrollo.
+- **Desarrollo multiplataforma**: se escribe el código **una sola vez** y se compila para varios sistemas operativos a la vez.
+  - Frameworks populares: **Flutter** (lenguaje Dart, de Google), **React Native** (JavaScript/TypeScript, de Meta), **Kotlin Multiplatform / KMP** (Kotlin, de JetBrains — permite compartir lógica y a veces UI entre Android/iOS).
+  - Ventajas: menos tiempo y costo (un solo equipo/código base), lanzamiento más rápido a ambas tiendas.
+  - Desventajas: rendimiento algo menor que el nativo en apps muy exigentes (juegos, edición de video), y a veces hay que esperar a que el framework "traduzca" el acceso a funciones nuevas del hardware.
+- **¿Por qué Kotlin es estratégico?** Es el lenguaje oficial recomendado por Google para Android desde 2019, es más conciso y seguro que Java (menos código repetitivo, previene errores de `null` en tiempo de compilación con **null safety**), interopera 100% con librerías Java existentes, y además se puede reutilizar para lógica de servidor (backend) o multiplataforma (KMP) — un mismo lenguaje sirve para varias partes del stack.
 
 **Dudas / para repasar antes de la prueba:**
 - _(vamos agregando acá lo que cueste más)_
