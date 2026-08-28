@@ -50,7 +50,7 @@ Según las guías del ramo (DSY1105), la primera evaluación cubre estos 6 temas
 - [x] **3. Colecciones** — `List`/`Map`, ciclos `for`/`while`, funciones de orden superior (`filter`, `map`)
 - [x] **4. POO** — clases, `open`/herencia, encapsulamiento (`private`), polimorfismo (`override`)
 - [x] **5. Corrutinas y sintaxis avanzada** — `suspend`, `delay`, `sealed class`, `data class`, funciones de ámbito (`let`)
-- [ ] **6. Primer app en Android Studio** — Activity, Compose, emulador (ya lo tenemos corriendo)
+- [x] **6. Primer app en Android Studio** — Activity, Compose, emulador (ya lo tenemos corriendo)
 
 Vamos marcando cada tema como hecho en la bitácora de abajo a medida que lo repasamos.
 
@@ -206,6 +206,25 @@ Dos categorías: **errores de compilación** (el código ni siquiera corre, Inte
 - **`data class`**: pensada solo para guardar datos; Kotlin genera gratis `equals()`, `hashCode()`, `toString()` y `copy()`.
 - **`sealed class`**: define un conjunto **cerrado** de subtipos conocidos (declarados en el mismo archivo). Ideal para modelar "estados" de una operación — el `when` sobre una sealed class no necesita (ni debería necesitar) `else`, porque el compilador conoce todos los casos posibles y avisa si falta cubrir uno.
 - **Función de ámbito `let`**: ejecuta un bloque usando el valor como `it` (o un nombre custom, como `perfil` en el ejemplo). Útil para encadenar operaciones sobre un valor sin repetir su nombre.
+
+**Dudas / para repasar antes de la prueba:**
+- _(vamos agregando acá lo que cueste más)_
+
+---
+
+### 2026-08-28 — Tema 6: Primer app en Android Studio (XML vs Compose) — Ruta a Prueba 1 completa ✅
+
+**Qué se hizo:**
+- Repaso conceptual: este mismo proyecto (`AplicacionparaMovile`) ES el entregable de la Guía 6. Ya estaba armado y corriendo desde el setup inicial (ver primera entrada de esta bitácora).
+- Con esto, los 6 temas de la Evaluación Parcial 1 quedan cubiertos.
+
+**Conceptos clave:**
+- **XML (sistema "clásico")**: cada pantalla se describe en un archivo `.xml` separado del código (`res/layout/activity_main.xml`), y en Kotlin se "conectan" las vistas con `findViewById()`. Es el sistema que usaban casi todas las apps Android hasta ~2021.
+- **Jetpack Compose (lo que usa este proyecto)**: la UI se describe directo en Kotlin con funciones `@Composable` (ver `MainActivity.kt` → `Greeting(...)`). No hay XML de layout ni `findViewById`: cuando cambian los datos, Compose vuelve a ejecutar (recompone) la función y la pantalla se actualiza sola.
+- **¿Por qué Compose y no XML?** Es el estándar moderno recomendado por Google: menos código repetitivo, la UI y la lógica que la afecta quedan en el mismo lenguaje (Kotlin), y es más fácil de testear/previsualizar (`@Preview`, como `GreetingPreview()` en `MainActivity.kt`).
+- **Estructura de un proyecto Android**: `AndroidManifest.xml` (declara qué Activities/permisos tiene la app), `MainActivity.kt` (punto de entrada, `onCreate()`), `ui/theme/` (colores/tipografía), `res/` (recursos: strings, íconos).
+
+**Ruta de la Prueba 1: completa.** Repasar la bitácora completa (Temas 1-6) + correr los ejercicios de `kotlin-basico/` de nuevo sin mirar la solución es el mejor ensayo antes de la evaluación.
 
 **Dudas / para repasar antes de la prueba:**
 - _(vamos agregando acá lo que cueste más)_
