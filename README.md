@@ -54,6 +54,15 @@ Según las guías del ramo (DSY1105), la primera evaluación cubre estos 6 temas
 
 Vamos marcando cada tema como hecho en la bitácora de abajo a medida que lo repasamos.
 
+## Meta futura: conectar con el backend VeloUrbe (Spring Boot)
+
+Después de la Prueba 1 hay que integrar esta app con el backend de otro ramo: **[velourbe-platform](https://github.com/ethan1213/velourbe-platform)** — plataforma de arriendo de patinetas eléctricas.
+
+- Stack: Spring Boot 3.5, Java 21, Docker/Docker Compose, PostgreSQL (una BD por servicio).
+- Arquitectura: `Cliente → API Gateway (:8080) → BFF (:8083) → 10 microservicios` (auth, rental, payment, notification, analytics, logistics, maintenance, support, station, review), cada uno en capas Controller → Service → Repository.
+- Auth vía JWT (`user-auth-service`).
+- **Lo que implica para el proyecto móvil** (adelanto, aún no lo hacemos): agregar una capa de red con corrutinas (Guía 5) — típicamente `Retrofit` u `Ktor Client` — que le hable al API Gateway, guardar el JWT tras el login, y mostrar los datos (patinetas, arriendos, etc.) en pantallas Compose.
+
 ## Problemas conocidos / soluciones
 
 - **`compileSdk` desalineado con las dependencias**: si `./gradlew build` falla con "requires libraries and applications that depend on it to compile against version X or later", hay que subir `compileSdk`/`targetSdk` en `app/build.gradle.kts` a esa versión.
