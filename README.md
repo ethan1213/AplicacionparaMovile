@@ -46,7 +46,7 @@ gradle/libs.versions.toml               -> catálogo de versiones (un solo lugar
 Según las guías del ramo (DSY1105), la primera evaluación cubre estos 6 temas en orden. Los ejercicios de código de las guías 2 a 5 son Kotlin "puro" (sin Android, se corren en IntelliJ) y viven en la carpeta [`kotlin-basico/`](./kotlin-basico); la guía 6 ya es este mismo proyecto Android.
 
 - [x] **1. Ecosistema móvil** — Nativo vs Multiplataforma, por qué Kotlin
-- [ ] **2. Kotlin básico** — variables, tipos, operadores, null safety (`?.`, `?:`), `when`
+- [x] **2. Kotlin básico** — variables, tipos, operadores, null safety (`?.`, `?:`), `when`
 - [ ] **3. Colecciones** — `List`/`Map`, ciclos `for`/`while`, funciones de orden superior (`filter`, `map`)
 - [ ] **4. POO** — clases, `open`/herencia, encapsulamiento (`private`), polimorfismo (`override`)
 - [ ] **5. Corrutinas y sintaxis avanzada** — `suspend`, `delay`, `sealed class`, `data class`, funciones de ámbito (`let`)
@@ -111,6 +111,24 @@ Después de la Prueba 1 hay que integrar esta app con el backend de otro ramo: *
   - Ventajas: menos tiempo y costo (un solo equipo/código base), lanzamiento más rápido a ambas tiendas.
   - Desventajas: rendimiento algo menor que el nativo en apps muy exigentes (juegos, edición de video), y a veces hay que esperar a que el framework "traduzca" el acceso a funciones nuevas del hardware.
 - **¿Por qué Kotlin es estratégico?** Es el lenguaje oficial recomendado por Google para Android desde 2019, es más conciso y seguro que Java (menos código repetitivo, previene errores de `null` en tiempo de compilación con **null safety**), interopera 100% con librerías Java existentes, y además se puede reutilizar para lógica de servidor (backend) o multiplataforma (KMP) — un mismo lenguaje sirve para varias partes del stack.
+
+**Dudas / para repasar antes de la prueba:**
+- _(vamos agregando acá lo que cueste más)_
+
+---
+
+### 2026-08-28 — Tema 2: Kotlin básico (variables, null safety, when)
+
+**Qué se hizo:**
+- Se creó [`kotlin-basico/guia2-kotlin-basico/Main.kt`](./kotlin-basico/guia2-kotlin-basico/Main.kt) resolviendo el ejercicio de la Guía 2: variables y operadores aritméticos, null safety con `?.`, y `when` para días de la semana.
+- Se verificó que compila y corre bien con el `kotlinc` que trae Android Studio.
+
+**Conceptos clave:**
+- **`val` vs `var`**: `val` = no se puede reasignar (preferir siempre que se pueda); `var` = sí se puede reasignar. No existe `final`/mutable por separado como en Java, es esto directamente en la declaración.
+- **Inferencia de tipos**: Kotlin detecta el tipo solo (`val x = 10` ya es `Int`), no hace falta escribirlo siempre.
+- **Interpolación de strings**: `"La suma es: $suma"` en vez de concatenar con `+` como en Java.
+- **Null safety**: un tipo normal (`String`) *nunca* puede ser `null` — el compilador lo prohíbe. Si necesitas que sí pueda serlo, lo marcas explícitamente con `?` (`String?`). El operador `?.` (safe call) evita el `NullPointerException`: si la variable es `null`, la expresión completa da `null` en vez de reventar el programa.
+- **`when`**: el reemplazo de Kotlin para `switch`. Se puede usar como expresión (devuelve un valor directo, como se hizo aquí con `nombreDia = when(...) {...}`) y siempre conviene poner `else` para el caso no contemplado.
 
 **Dudas / para repasar antes de la prueba:**
 - _(vamos agregando acá lo que cueste más)_
