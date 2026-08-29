@@ -17,6 +17,8 @@ hs_err_pid*.log
 replay_pid*.log
 *.hprof
 
-# Ejercicios sueltos de kotlin-basico/ compilados a mano (kotlinc)
+# Ejercicios sueltos de kotlin-basico/ y pruebas-practica/ compilados a mano (kotlinc)
 kotlin-basico/**/*.jar
 kotlin-basico/**/*.class
+pruebas-practica/**/*.jar
+pruebas-practica/**/*.class

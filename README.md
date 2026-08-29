@@ -54,6 +54,8 @@ Según las guías del ramo (DSY1105), la primera evaluación cubre estos 6 temas
 
 Vamos marcando cada tema como hecho en la bitácora de abajo a medida que lo repasamos.
 
+**Ruta completa (6/6). Ahora toca practicar:** [`pruebas-practica/`](./pruebas-practica) tiene preguntas de teoría, ejercicios de "encuentra el error", 3 ejercicios de código nuevos (con soluciones verificadas) y un simulacro de examen cronometrado — todo listo para autoevaluarse antes de la prueba real.
+
 ## Meta futura: conectar con el backend VeloUrbe (Spring Boot)
 
 Después de la Prueba 1 hay que integrar esta app con el backend de otro ramo: **[velourbe-platform](https://github.com/ethan1213/velourbe-platform)** — plataforma de arriendo de patinetas eléctricas.
